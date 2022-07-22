@@ -1,0 +1,65 @@
+<div th:include="/layout/header"></div>
+<style>
+html, body {
+    background: #fff;
+}
+#loginHeading {
+	color: lightblue;
+	text-align: center;
+	background: #144028;
+}
+
+.formhead {
+	margin-top: 150px;
+}
+
+.textlevel  {
+    line-height: 1.5;
+    font-family: system-ui;
+}
+.box {
+        width: 30%;
+        height: 200px;
+        border: 5px dashed #f7a239;
+      }
+.row {
+margin-right: 0px;
+}      
+</style>
+
+		<div class="row">
+			<div class="col-sm-3"></div>
+			<div class="col-sm-6">
+				<h1 class="mystyle" id="loginHeading">Student Details</h1>
+				<div class="form-group" style="display: none">
+					<label for="name">STUDENT ID:</label> <input type="text"
+						th:field="*{studentdetails.id}" name="id" class="form-control"
+						id="studentId" required placeholder="Enter student id">
+				</div>
+				<div>
+					<div class="form-group">
+
+
+
+						<div class="col-sm-9">
+							<h4><span class="textlevel">Name:</span> <span th:text="*{studentdetails.name}"></span><br>
+							<span class="textlevel">Standard:</span> <span th:text="*{studentdetails.standard}"></span><br>
+							<span class="textlevel">Mobile No.:</span> <span th:text="*{studentdetails.mobileNo}"></span><br>
+						<span class="textlevel">Email:</span> <span th:text="*{studentdetails.email}"></span></h4>
+						</div>
+						<div class="col-sm-3">
+							<img th:src="@{'/images/'+${studentdetails.photosImagePath}}"
+								style="width: 100%;" />
+						
+						</div>
+
+					</div>
+
+					<div class="col-sm-3"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+<div th:include="/layout/footer"></div>
+

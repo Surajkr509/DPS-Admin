@@ -1,0 +1,17 @@
+{"properties": [
+  {
+    "name": "com.dps.jwtExpirationMs",
+    "type": "java.lang.String",
+    "description": "A description for 'com.dps.jwtExpirationMs'"
+  },
+  {
+    "name": "security.basic.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'security.basic.enabled'"
+  },
+  {
+    "name": "spring.jpa.hibernate.hbm2ddl.auto",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.jpa.hibernate.hbm2ddl.auto'"
+  }
+]}

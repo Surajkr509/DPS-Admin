@@ -1,0 +1,70 @@
+<div th:include="/layout/header"></div>
+<style>
+html, body {
+    background: #fff;
+}
+hr {
+    margin-top: 10;
+}
+     
+</style>
+
+		<div class="row">
+				<div class="col-sm-2"></div>
+				<div class="col-sm-8">
+					<div class="card card-primary">
+						<div class="card-header">
+							<h3 class="card-title">Notification Details : <hr></hr></h3>
+							<br><br>
+						</div>
+						<div class="card-body">
+					<input type="hidden" name="id" th:value="${notifyDetails.id}">
+					<div class="form-group row">
+						<div class="col-sm-3">
+							<label for="notifyDetails">Message </label>
+						</div>
+						<div class="col-sm-8">
+							<input id="message" type="text" name="message"
+								th:value="${notifyDetails.message}" class="form-control"
+								disabled>
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<div class="col-sm-3">
+							<label for="notifyDetails">Type </label>
+						</div>
+						<div class="col-sm-8">
+							<input id="type" type="text" name="type"
+								th:value="${notifyDetails.type}" class="form-control" disabled>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-sm-3">
+							<label for="notifyDetails">Date-Time </label>
+						</div>
+						<div class="col-sm-8">
+							<input id="createdAt" type="text" name="createdAt"
+								th:value="${notifyDetails.createdAt}" class="form-control"
+								disabled>
+						</div>
+					</div>
+				</div>
+					</div>
+				</div>
+				<div class="col-md-6"></div>
+			</div>
+	</div>
+	</div>
+<div th:include="/layout/footer"></div>
+<script type="text/javascript">
+	function confirm_update() {
+		var data = $('#role').val();
+		if (data == "") {
+			$('#messages').text("*Please Enter Role");
+		} else {
+			$('#change').attr('disabled', 'disabled');
+			$('#quickForm').submit();
+		}
+	}
+</script>

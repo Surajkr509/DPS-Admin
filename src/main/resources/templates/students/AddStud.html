@@ -1,0 +1,65 @@
+<div th:include="/layout/header"></div>
+<style>
+html, body {
+    background: #fff;
+}
+#loginHeading {
+	color: lightblue;
+	text-align: center;
+	background: #144028;
+}
+
+.textlevel  {
+    line-height: 1.5;
+    font-family: system-ui;
+}
+.box {
+        width: 30%;
+        height: 200px;
+        border: 5px dashed #f7a239;
+      }
+.row {
+margin-right: 0px;
+}      
+</style>
+
+		<div class="row">
+			<div class="col-sm-3"></div>
+			<div class="col-sm-6 formhead ">
+				<h1 class="mystyle" id="loginHeading">Add Student</h1>
+				<form action="addStud" method="POST" th:object="${student}"
+					enctype="multipart/form-data">
+					<div class="form-group">
+						<label for="name">Name:</label> <input type="text" name="name"
+							class="form-control" id="name" placeholder="Enter name">
+							<span th:if="${#fields.hasErrors('name')}" th:errorclass="error"
+							th:errors="*{name}"></span>
+						 <input type="file" name="image" accept="image/png, image/jpeg" />
+					</div>
+					<div class="form-group">
+						<label for="standard">Standard:</label> <input type="text"
+							name="standard" class="form-control" id="standard"
+							placeholder="Enter standard"><span th:if="${#fields.hasErrors('standard')}" th:errorclass="error"
+							th:errors="*{standard}"></span>
+					</div>
+					<div class="form-group">
+						<label for="mobileNo">Mobile Number:</label> <input type="text"
+							name="mobileNo" class="form-control" id="mobileNo"
+							placeholder="Enter mobile no."><span th:if="${#fields.hasErrors('mobileNo')}" th:errorclass="error"
+							th:errors="*{mobileNo}"></span>
+					</div>
+					<div class="form-group">
+						<label>Email:</label> <input type="text" name="email"
+							class="form-control" id="email" placeholder="Enter your email">
+						<span th:if="${#fields.hasErrors('email')}" th:errorclass="error"
+							th:errors="*{email}"></span>
+					</div>
+					<button type="submit" class="btn btn-primary btn-block">Submit</button>
+				</form>
+			</div>
+			<div class="col-sm-3"></div>
+		</div>
+	</div>
+	</div>
+<div th:include="/layout/footer"></div>
+

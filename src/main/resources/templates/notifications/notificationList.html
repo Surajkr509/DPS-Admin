@@ -1,0 +1,93 @@
+<div th:include="/layout/header"></div>
+<style>
+html, body {
+	background: #fff;
+}
+
+a {
+	color: black;
+}
+
+a:hover {
+	color: skyblue;
+}
+.fixed-table-body {
+height:auto;
+}
+</style>
+<div class="data-table-area mg-b-15">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="sparkline13-list">
+					<div class="sparkline13-hd">
+						<div class="main-sparkline13-hd">
+							<h1>
+								Notification<span class="table-project-n">List</span> Table
+							</h1>
+						</div>
+					</div>
+					<div class="sparkline13-graph">
+						<div class="datatable-dashv1-list custom-datatable-overright">
+							<div id="toolbar">
+								<select class="form-control dt-tb">
+									<option value="">Export Basic</option>
+									<option value="all">Export All</option>
+									<option value="selected">Export Selected</option>
+								</select>
+							</div>
+							<table id="table" data-toggle="table" data-pagination="true"
+								data-search="true" data-show-columns="true"
+								data-show-pagination-switch="true" data-show-refresh="true"
+								data-key-events="true" data-show-toggle="true"
+								data-resizable="true" data-cookie="true"
+								data-cookie-id-table="saveId" data-show-export="true"
+								data-click-to-select="true" data-toolbar="#toolbar">
+								<thead>
+									<tr>
+										<th data-field="state" data-checkbox="true"></th>
+										<th data-field="id">ID</th>
+										<th data-field="name" data-editable="true">Message</th>
+										<th data-field="email" data-editable="true">Type</th>
+										<th data-field="phone" data-editable="true">Date & Time</th>
+										<th data-field="action">Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="notification,indx:${notificationDetails}">
+										<td></td>
+										<td th:text="${indx.count}"></td>
+										<td th:text="${notification.message}"></td>
+										<td th:text="${notification.type}"></td>
+										<td th:text="${notification.createdAt}"></td>
+										<td>
+											<button data-toggle="tooltip" title="View"
+												class="pd-setting-ed">
+												<a class="fa fa-eye" aria-hidden="true"
+													th:href="@{../getUnReadNotificationById/{id}(id=${notification.id})}"></a>
+											</button>
+											<button data-toggle="tooltip" title="Edit"
+												class="pd-setting-ed">
+												<a class="fa fa-pencil-square-o" aria-hidden="true"
+													th:href="@{../editNotification/{id}(id=${notification.id})}"></a>
+											</button>
+											<button data-toggle="tooltip" title="Trash"
+												class="pd-setting-ed">
+												<a class="fa fa-trash-o" aria-hidden="true"
+													th:href="@{../admin/teacher/{id}(id=${notification.id})}"></a>
+											</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+<div th:include="/layout/footer"></div>
+>

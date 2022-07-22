@@ -1,0 +1,88 @@
+<div th:include="/layout/header"></div>
+<style>
+html, body {
+    background: #fff;
+}
+#loginHeading {
+	color: lightblue;
+	text-align: center;
+	background: #144028;
+}
+
+.textlevel  {
+    line-height: 1.5;
+    font-family: system-ui;
+}
+.box {
+        width: 30%;
+        height: 200px;
+        border: 5px dashed #f7a239;
+      }
+.row {
+margin-right: 0px;
+}      
+</style>
+
+		<div class="row">
+			<div class="col-sm-3"></div>
+			<div class="col-sm-6">
+				<h1 class="mystyle" id="loginHeading">Edit Student</h1>
+				<form action="../update" method="post" 
+					enctype="multipart/form-data">
+					<div class="form-group" style="display: none">
+						<label for="name">STUDENT ID:</label> <input type="text"
+							th:field="*{studentinfo.id}" name="id" class="form-control"
+							id="studentId" required placeholder="Enter student id">
+					</div>
+					<div>
+						<div class="form-group">
+
+
+
+							<div class="col-sm-9">
+								<div class="form-group">
+									<label for="name">Name :</label> <input type="text"
+										th:field="*{studentinfo.name}" name="name"
+										class="form-control" id="name" required
+										placeholder="Enter name">
+								</div>
+								<div class="form-group">
+									<label for="name">Standard :</label> <input type="text"
+										th:field="*{studentinfo.standard}" name="standard"
+										class="form-control" id="standard" required
+										placeholder="Enter standard">
+								</div>
+								<div class="form-group">
+									<label for="name">Mobile No. :</label> <input type="text"
+										th:field="*{studentinfo.mobileNo}" name="mobileNo"
+										class="form-control" id="mobileNo" required
+										placeholder="Enter mobile no.">
+								</div>
+								<div class="form-group">
+									<label for="name">Email :</label> <input type="text"
+										th:field="*{studentinfo.email}" name="email"
+										class="form-control" id="email" required
+										placeholder="Enter email address">
+								</div>
+
+
+							</div>
+
+							<div class="col-sm-3">
+								<img th:src="@{'/images/'+${studentinfo.photosImagePath}}"
+									style="width: 100%;" />
+									 <input type="file" name="image" accept="image/png, image/jpeg" />
+							</div>
+						</div>
+					</div>
+					<button type="submit" class="btn btn-primary btn-block">Submit</button>
+				</form>
+
+			</div>
+
+			<div class="col-sm-3"></div>
+		</div>
+	</div>
+	</div>
+<div th:include="/layout/footer"></div>
+
