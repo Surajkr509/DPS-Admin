@@ -1,0 +1,92 @@
+<div th:include="/layout/header"></div>
+<style>
+html, body {
+	background: #fff;
+}
+
+a {
+	color: black;
+}
+
+a:hover {
+	color: skyblue;
+}
+</style>
+<div class="data-table-area mg-b-15">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="sparkline13-list">
+					<div class="sparkline13-hd">
+						<div class="main-sparkline13-hd">
+							<h1>
+								Image<span class="table-project-n">List</span> Table
+							</h1>
+						</div>
+					</div>
+					<div class="sparkline13-graph">
+						<div class="datatable-dashv1-list custom-datatable-overright">
+							<div id="toolbar">
+								<select class="form-control dt-tb">
+									<option value="">Export Basic</option>
+									<option value="all">Export All</option>
+									<option value="selected">Export Selected</option>
+								</select>
+							</div>
+							<table id="table" data-toggle="table" data-pagination="true"
+								data-search="true" data-show-columns="true"
+								data-show-pagination-switch="true" data-show-refresh="true"
+								data-key-events="true" data-show-toggle="true"
+								data-resizable="true" data-cookie="true"
+								data-cookie-id-table="saveId" data-show-export="true"
+								data-click-to-select="true" data-toolbar="#toolbar">
+								<thead>
+									<tr>
+										<th data-field="state" data-checkbox="true"></th>
+										<th data-field="id">ID</th>
+										<th data-field="imageName" data-editable="true">Image Name</th>
+										<th data-field="photos" data-editable="true">Photos</th>
+										<th data-field="createdAt" data-editable="true">Date & Time</th>
+										<th data-field="complete">Photo</th>
+										<th data-field="action">Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="slideshow,indx:${imageDetails}">
+										<td></td>
+										<td th:text="${indx.count}"></td>
+										<td th:text="${slideshow.imageName}"></td>
+										<td th:text="${slideshow.photos}"></td>
+										<td th:text="${slideshow.createdAt}"></td>
+										<td><img
+											th:src="@{'/images/' +${slideshow.photosImagePath}}" /></td>
+										<td>
+											<button data-toggle="tooltip" title="View"
+												class="pd-setting-ed">
+												<a class="fa fa-eye" aria-hidden="true"
+													th:href="@{../admin/viewImage/{id}(id=${slideshow.id})}"></a>
+											</button>
+											<button data-toggle="tooltip" title="Edit"
+												class="pd-setting-ed">
+												<a class="fa fa-pencil-square-o" aria-hidden="true"
+													th:href="@{../admin/editImage/{id}(id=${slideshow.id})}"></a>
+											</button>
+											<button data-toggle="tooltip" title="Trash"
+												class="pd-setting-ed">
+												<a class="fa fa-trash-o" aria-hidden="true"
+													th:href="@{../admin/{id}(id=${slideshow.id})}"></a>
+											</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+<div th:include="/layout/footer"></div>

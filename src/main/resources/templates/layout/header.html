@@ -57,6 +57,9 @@
 <link rel="stylesheet" th:href="@{/css/calendar/fullcalendar.min.css}">
 <link rel="stylesheet"
 	th:href="@{/css/calendar/fullcalendar.print.min.css}">
+ <!-- cropper CSS
+		============================================ -->
+<link rel="stylesheet" th:href="@{/css/cropper/cropper.min.css}">
 <!-- style CSS
 		============================================ -->
 <link rel="stylesheet" th:href="@{/css/style.css}">
@@ -92,9 +95,9 @@
 	<div class="left-sidebar-pro">
 		<nav id="sidebar" class="">
 			<div class="sidebar-header">
-				<a href="index.html"><img class="main-logo"
+				<a th:href="@{/auth/index}"><img class="main-logo"
 					th:src="@{/img/logo/dps-jaipur-school-logo.png}" alt="" /></a> <strong><a
-					href="index.html"><img
+					th:href="@{/auth/index}"><img
 						th:src="@{/img/logo/dps-jaipur-school-logo.png}" alt="" /></a></strong>
 			</div>
 			<div class="left-custom-menu-adp-wrap comment-scrollbar">
@@ -170,12 +173,12 @@
 						<li><a class="has-arrow" href="all-courses.html"
 							aria-expanded="false"><span
 								class="educate-icon educate-library icon-wrap"></span> <span
-								class="mini-click-non">Library</span></a>
+								class="mini-click-non">SlideShow Management</span></a>
 							<ul class="submenu-angle" aria-expanded="false">
-								<li><a title="All Library" href="library-assets.html"><span
-										class="mini-sub-pro">Library Assets</span></a></li>
-								<li><a title="Add Library" href="add-library-assets.html"><span
-										class="mini-sub-pro">Add Library Asset</span></a></li>
+								<li><a title="All Library" th:href="@{/admin/addImage}"><span
+										class="mini-sub-pro">Add Image</span></a></li>
+								<li><a title="Add Library" th:href="@{/admin/imageList}"><span
+										class="mini-sub-pro">Image List</span></a></li>
 								<li><a title="Edit Library" href="edit-library-assets.html"><span
 										class="mini-sub-pro">Edit Library Asset</span></a></li>
 							</ul></li>

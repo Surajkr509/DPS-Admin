@@ -25,9 +25,10 @@
                     file = files[0];
 
                     if (/^image\/\w+$/.test(file.type)) {
+alert(file.name);
                         fileReader.readAsDataURL(file);
                         fileReader.onload = function () {
-                            $inputImage.val("");
+                            
                             $image.cropper("reset", true).cropper("replace", this.result);
                         };
                     } else {

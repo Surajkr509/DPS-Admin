@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import com.dps_admin.bean.NotificationsEnum;
 import com.dps_admin.model.Notifications;
 
 public interface NotificationRepository extends JpaRepository<Notifications,Long> {
@@ -11,5 +12,12 @@ public interface NotificationRepository extends JpaRepository<Notifications,Long
 	List<Notifications> findAllByReadStatus(int i);
 
 	Long countAllByReadStatus(int i);
+
+	Object findByType(String string);
+
+	Object countAllByType(String type);
+
+	List<Notifications> findAllByType(String type);
+
 
 }

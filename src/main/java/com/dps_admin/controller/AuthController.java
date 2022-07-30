@@ -71,10 +71,18 @@ public class AuthController {
 	public String signUp(Admin admin) {
 		return "signup";
 	}
-	@GetMapping(value = "/default/index")
+	@GetMapping(value = "/index")
 	public ModelAndView dashBoard(HttpServletRequest request, Authentication auth) {
 		System.err.println("::: AdminController.dashBoard :::");
 		ModelAndView modelAndView = new ModelAndView();
+		Long teacherCount=teacherRepo.count();
+		Long studentCount=studentRepo.count();
+		Long noitfyCount=notificationRepo.count();
+		Long roleCount=roleRepo.count();
+		modelAndView.addObject("tC",teacherCount);
+		modelAndView.addObject("sC",studentCount);
+		modelAndView.addObject("nC",noitfyCount);
+		modelAndView.addObject("rC",roleCount);
 		modelAndView.addObject("userData",auth.getName());
 		modelAndView.setViewName("/index");
 		return modelAndView;

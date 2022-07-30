@@ -87,8 +87,8 @@
     <div class="left-sidebar-pro">
         <nav id="sidebar" class="">
             <div class="sidebar-header">
-                <a href="index.html"><img class="main-logo" th:src="@{/img/logo/dps-jaipur-school-logo.png}" alt="" /></a>
-                <strong><a href="index.html"><img th:src="@{/img/logo/dps-jaipur-school-logo.png}" alt="" /></a></strong>
+                <a th:href="@{/auth/index}"><img class="main-logo" th:src="@{/img/logo/dps-jaipur-school-logo.png}" alt="" /></a>
+                <strong><a th:href="@{/auth/index}"><img th:src="@{/img/logo/dps-jaipur-school-logo.png}" alt="" /></a></strong>
             </div>
             <div class="left-custom-menu-adp-wrap comment-scrollbar">
                 <nav class="sidebar-nav left-sidebar-menu-pro">
@@ -138,10 +138,10 @@
                             </ul>
                         </li>
                         <li>
-                            <a class="has-arrow" href="all-courses.html" aria-expanded="false"><span class="educate-icon educate-library icon-wrap"></span> <span class="mini-click-non">Library</span></a>
+                            <a class="has-arrow" href="all-courses.html" aria-expanded="false"><span class="educate-icon educate-library icon-wrap"></span> <span class="mini-click-non">SlideShow Management</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="All Library" href="library-assets.html"><span class="mini-sub-pro">Library Assets</span></a></li>
-                                <li><a title="Add Library" href="add-library-assets.html"><span class="mini-sub-pro">Add Library Asset</span></a></li>
+                                <li><a title="All Library" th:href="@{/admin/addImage}"><span class="mini-sub-pro">Add Image</span></a></li>
+                                <li><a title="Add Library" th:href="@{/admin/imageList}"><span class="mini-sub-pro">Image List</span></a></li>
                                 <li><a title="Edit Library" href="edit-library-assets.html"><span class="mini-sub-pro">Edit Library Asset</span></a></li>
                             </ul>
                         </li>
@@ -177,7 +177,7 @@
                         <li>
                             <a class="has-arrow" href="mailbox.html" aria-expanded="false"><span class="educate-icon educate-charts icon-wrap"></span> <span class="mini-click-non">Charts</span></a>
                             <ul class="submenu-angle chart-mini-nb-dp" aria-expanded="false">
-                                <li><a title="Bar Charts" href="bar-charts.html"><span class="mini-sub-pro">Bar Charts</span></a></li>
+                                <li><a title="Bar Charts" th:href="@{/admin/chart}"><span class="mini-sub-pro">Pie Charts</span></a></li>
                                 <li><a title="Line Charts" href="line-charts.html"><span class="mini-sub-pro">Line Charts</span></a></li>
                                 <li><a title="Area Charts" href="area-charts.html"><span class="mini-sub-pro">Area Charts</span></a></li>
                                 <li><a title="Rounded Charts" href="rounded-chart.html"><span class="mini-sub-pro">Rounded Charts</span></a></li>
