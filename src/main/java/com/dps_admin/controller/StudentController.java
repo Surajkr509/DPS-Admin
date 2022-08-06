@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -137,4 +138,20 @@ public class StudentController {
 		rA.addAttribute("sortDirection", null);
 		return "redirect:/admin/studentList";
 	}
+	
+	@GetMapping(value = "/updateStudentStatus/{id}")
+	@ResponseBody
+	public String updateStudentStatus(@PathVariable("id") Long id) {
+		System.err.println("::: StudentController.updateStudentStatus :::");
+		Student student=studentRepo.findById(id).orElse(null);
+		if(student!=null) {
+			if(student.isActive()) 
+				student.setActive(false);
+			 else 
+				 student.setActive(true);
+			studentRepo.save(student);
+	}
+		return "Student Status Updated";
+	}
+	
 }

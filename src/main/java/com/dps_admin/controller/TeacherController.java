@@ -2,9 +2,7 @@ package com.dps_admin.controller;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
 
-import javax.mail.Multipart;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -117,5 +116,19 @@ public class TeacherController {
 	public String delete (@PathVariable Long id) {
 		teacherRepo.deleteById(id);
 		return "redirect:/admin/teacherList";
+	}
+	@GetMapping(value = "/updateTeacherStatus/{id}")
+	@ResponseBody
+	public String updateTeacherStatus(@PathVariable("id") Long id) {
+		System.err.println("::: TeacherController.updateTeacherStatus :::");
+		Teacher teacher=teacherRepo.findById(id).orElse(null);
+		if(teacher!=null) {
+			if(teacher.isActive()) 
+				teacher.setActive(false);
+			 else 
+				 teacher.setActive(true);
+			teacherRepo.save(teacher);
+	}
+		return "Teacher Status Updated";
 	}
 }

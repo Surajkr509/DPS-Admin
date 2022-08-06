@@ -16,7 +16,8 @@ public class Constants {
 	public static final String badRequest = "badRequest";
 	public static final String invalidData = "invalidData";
 	public static final String requestSuccess = "requestSuccess";
-
+	
+	
 	
 	
 	
@@ -63,4 +64,9 @@ public class Constants {
 		}
 		return "File deleted Successfully";
 	}
+	
+	public class query {
+	public static final String DELETE_BY_ROLE_ID = "call DeleteRole(:roleId)";
+	}
+
 }

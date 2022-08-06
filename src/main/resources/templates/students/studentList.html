@@ -11,6 +11,17 @@ a {
 a:hover {
 	color: skyblue;
 }
+.dropdown-menu {
+    position: revert;
+    }
+ .btn-sm {
+    padding: 5px 10px;
+    font-size: 14px;
+    line-height: 1.5;
+    border-radius: 3px;
+    border: 1px solid rgba(0,0,0,.12);
+    background: #f5f5f5;
+}
 </style>
 <div class="data-table-area mg-b-15">
 	<div class="container-fluid">
@@ -48,6 +59,7 @@ a:hover {
 										<th data-field="email" data-editable="true">Email</th>
 										<th data-field="phone" data-editable="true">Phone</th>
 										<th data-field="complete">Photo</th>
+										<th data-field="rex">Status</th>
 										<th data-field="action">Action</th>
 									</tr>
 								</thead>
@@ -60,6 +72,8 @@ a:hover {
 										<td th:text="${student.mobileNo}"></td>
 										<td><img
 											th:src="@{'/images/' +${student.photosImagePath}}" /></td>
+										<td th:id="'active'+${indx.count}"
+											th:text="${student.isActive} ? 'Active' : 'Deactive'"></td>
 										<td>
 											<button data-toggle="tooltip" title="View"
 												class="pd-setting-ed">
@@ -76,6 +90,20 @@ a:hover {
 												<a class="fa fa-trash-o" aria-hidden="true"
 													th:href="@{../admin/{id}(id=${student.id})}"></a>
 											</button>
+											<div class="btn-group dropdown">
+												<button type="button"
+													class="btn btn-outline-primary dropdown-toggle btn-sm"
+													aria-haspopup="true" aria-expanded="false"
+													data-toggle="dropdown">
+													<i class="fa fa-cog"></i>
+												</button>
+												<div class="dropdown-menu">
+													<a class="dropdown-item" href="#" th:attrappend="data-id=${student.id}"
+														th:text="${student.isActive} ? 'Deactive' : 'Active'"
+														th:onclick="'changeStatus('+${indx.count}+','+${student.id}+',this)'"
+														style="margin-left: 14%;"></a>
+												</div>
+											</div>
 										</td>
 									</tr>
 								</tbody>
@@ -90,3 +118,26 @@ a:hover {
 </div>
 </div>
 <div th:include="/layout/footer"></div>
+<script type="text/javascript">
+	function changeStatus(countr, vendId, elem) {
+		var dataId = $(elem).data("id");
+		var url = "/admin/updateStudentStatus/" + dataId;
+		$.ajax({
+			url : url,
+			type : 'GET',
+			success : function(response) {
+				swal("", response, "success");
+			},
+			error : function(response) {
+				console.log(response);
+				swal("", "Cant update Status", "success");
+			}
+		});
+		$('#active' + countr).text($(elem).text());
+		if ($(elem).text() == 'Deactive')
+			$(elem).text('Active');
+		else
+			$(elem).text('Deactive');
+	}
+
+</script>

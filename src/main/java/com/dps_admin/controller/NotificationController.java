@@ -45,6 +45,9 @@ public class NotificationController {
 	@GetMapping("/getAllNotifications")
 	public String getAllNotifications(Model model) {
 		List<Notifications> notiList=notificationRepository.findAll();
+	
+		
+		System.err.println("::::::"+notiList);
 		model.addAttribute("notificationDetails", notiList);
 		return "notifications/notificationList";
 	}

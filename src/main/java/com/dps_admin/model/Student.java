@@ -45,6 +45,7 @@ public class Student {
 	@Column(nullable=false,length =64)
 	private String photos;
 	
+	private boolean isActive;
 	
 	public Long getId() {
 		return id;
@@ -118,7 +119,13 @@ public class Student {
 	public void setPhotos(String photos) {
 		this.photos = photos;
 	}
-	 @Transient
+	 public boolean isActive() {
+		return isActive;
+	}
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
+	}
+	@Transient
 	    public String getPhotosImagePath() {
 	        if (photos == null || id == null) return null;
 	         

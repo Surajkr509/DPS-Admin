@@ -23,6 +23,7 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -105,12 +106,18 @@ public class AuthController {
 				modelAndView.setViewName("/signin");
 				return modelAndView;
 			}
-			String password = admin.getPassword();
-			if (authService.checkPassword(password) == false) {
+//			String password = admin.getPassword();
+			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+			if (encoder.matches(admin.getPassword(), adminData.getPassword())==false) {
 				bindingResult.rejectValue("password", "errors.admin.password", "*Please Enter correct password");
 				modelAndView.setViewName("/signin");
 				return modelAndView;
 			}
+//			if (authService.checkPassword(password) == false) {
+//				bindingResult.rejectValue("password", "errors.admin.password", "*Please Enter correct password");
+//				modelAndView.setViewName("/signin");
+//				return modelAndView;
+//			}
 //			Authentication authentication = authenticationManager.authenticate(
 //					new UsernamePasswordAuthenticationToken(admin.getEmail(), admin.getPassword()));
 //			SecurityContextHolder.getContext().setAuthentication(authentication);
