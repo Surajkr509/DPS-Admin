@@ -95,4 +95,11 @@ public class RoleController {
 	}
 		return "Role Status Updated";
 	}
+	
+	@PostMapping("/{id}")
+	public String deleteRole(@PathVariable("id") Long id) {
+		System.out.println("::Role.Controller.deleteRole:::::");
+		roleService.deleteRole(id);
+		return "Role deleted Successfully";
+	}
 }

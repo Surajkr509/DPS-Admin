@@ -11,8 +11,6 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.dps_admin.bean.FileUploadUtil;
-import com.dps_admin.bean.NotificationsEnum;
-import com.dps_admin.model.Notifications;
 import com.dps_admin.model.Student;
 import com.dps_admin.repository.NotificationRepository;
 import com.dps_admin.repository.StudentRepository;
@@ -27,6 +25,7 @@ public class StudentService {
 	@Autowired
 	NotificationRepository notificationRepository;
 	
+	
 	public Student getById(Long id) {
 		Optional<Student> student= studentRepository.findById(id);
 		return student.isPresent()?student.get():null;
@@ -40,20 +39,19 @@ public class StudentService {
 	public Object update(Student student,MultipartFile multipartFile ) throws IOException {
 		System.err.println("Update:::");
 		Optional<Student> existStudent = studentRepository.findById(student.getId());
-		System.out.println("Student ID" + student);
 		if (existStudent.isPresent()) {
 			Student data = existStudent.get();
 			data.setName(student.getName());
 			data.setStandard(student.getStandard());
 			data.setEmail(student.getEmail());
 			data.setMobileNo(student.getMobileNo());
-		
 		if(!multipartFile.isEmpty()) {
 			String uploadDir2 = "src/main/resources/static/images/" + data.getId()+"/";
 			
 			Constants.deleteMultiPartFile(uploadDir2, data.getPhotos());
 			String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
 			System.out.println("Image:::"+fileName);
+			student.setRoleId(data.getRoleId());
 			student.setPhotos(fileName);
 			studentRepository.save(student);
 			String uploadDir = "src/main/resources/static/images/" + data.getId();

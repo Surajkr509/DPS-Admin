@@ -63,6 +63,7 @@ public class TeacherService {
 				Constants.deleteMultiPartFile(uploadDir2, reqTeacher.getPhotos());
 				String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
 				System.out.println("Image:::"+fileName);
+				teacher.setRoleId(reqTeacher.getRoleId());
 				teacher.setPhotos(fileName);
 				teacherRepo.save(teacher);
 				String uploadDir = "src/main/resources/static/images/" + reqTeacher.getId();

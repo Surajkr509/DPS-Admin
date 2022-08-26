@@ -22,5 +22,9 @@ public class RoleService {
 		
 	}
 
+	public void deleteRole(Long id) {
+		roleRepo.deleteById(id);
+	}
+
 	
 }

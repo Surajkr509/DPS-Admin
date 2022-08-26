@@ -12,12 +12,12 @@ html, body {
 				<div class="sparkline10-list shadow-reset">
 					<div class="sparkline10-hd">
 						<div class="main-sparkline10-hd">
-							<h1>Add Image  </h1>
+							<h1>Add Image</h1>
 						</div>
 					</div>
 					<div class="sparkline10-graph">
-						<form action="addImage" id="quickForm" method="POST" th:object="${slideshow}"
-							enctype="multipart/form-data">
+						<form action="addImage" id="quickForm" method="POST"
+							th:object="${slideshow}" enctype="multipart/form-data">
 							<div class="basic-login-form-ad">
 								<div class="row">
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -43,12 +43,12 @@ html, body {
 																		class="btn btn-primary img-cropper-cp"> <input
 																		type="file" accept="image/*" name="file"
 																		id="inputImage" required> Upload new image
-																	</label>
-																	<span class="validation-message" id="msg" style="color:red;"></span>
+																	</label> <span class="validation-message" id="msg"
+																		style="color: red;"></span>
 																</div>
 															</div>
 														</div>
-														
+
 														<div class="btn-group images-action-pro">
 															<button class="btn btn-white" id="zoomIn" type="button">Zoom
 																In</button>
@@ -61,16 +61,18 @@ html, body {
 															<button class="btn btn-warning img-cropper-cp-t"
 																id="setDrag" type="button">New crop</button>
 														</div>
-														<br><br>
+														<br>
+														<br>
 														<div class="form-group">
-															<input type="text"
-																name="imageName" class="form-control" id="imageName"
-																placeholder="Enter Image name"> 
-																<span class="validation-message" id="messages" style="color:red;"></span>
+															<input type="text" name="imageName" class="form-control"
+																id="imageName" placeholder="Enter Image name"> <span
+																class="validation-message" id="messages"
+																style="color: red;"></span>
 														</div>
-														<br>
-														<br>
-														<button type="button"  id="change" onclick="confirm_update()" class="btn btn-primary btn-block">Submit</button>
+														<br> <br>
+														<button type="button" id="change"
+															onclick="confirm_update()"
+															class="btn btn-primary btn-block">Submit</button>
 
 													</div>
 												</div>
@@ -102,21 +104,27 @@ html, body {
 	var txtimageName=$(this).val();
 	if(txtimageName.length !=0){
 	$('#messages').html(" ");
+	change.disabled = false;
 	}
 	});
 	});
 	function confirm_update() {
 		var x= $('#inputImage').val();
-		
 		var data = $('#imageName').val();
-		if(x == ""){
-		$('#msg').text("*Please Select Image");
-		}
-		if (data == "") {
-			$('#messages').text("*Please Enter Image Name");
-		} else {
-			$('#change').attr('disabled', 'disabled');
+		
+		if (x != "" & data != "") {
+			
+			
 			$('#quickForm').submit();
+		}
+		else {
+		change.disabled = true;
+		if(x == "")
+		$('#msg').text("*Please Select Image");
+		
+		if (data == "") 
+			$('#messages').text("*Please Enter Image Name");
+		
 		}
 	}
 </script>

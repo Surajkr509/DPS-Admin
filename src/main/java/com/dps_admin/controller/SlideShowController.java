@@ -23,7 +23,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.dps_admin.bean.NotificationsEnum;
 import com.dps_admin.model.Notifications;
 import com.dps_admin.model.SlideShow;
-import com.dps_admin.model.Student;
 import com.dps_admin.repository.NotificationRepository;
 import com.dps_admin.repository.SlideShowRepository;
 import com.dps_admin.service.SlideShowService;

@@ -1,9 +1,6 @@
 package com.dps_admin.controller;
 
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.Optional;
-
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.Cookie;
@@ -11,16 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
-import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;  
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.DisabledException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -40,7 +31,6 @@ import com.dps_admin.repository.NotificationRepository;
 import com.dps_admin.repository.RoleRepository;
 import com.dps_admin.repository.StudentRepository;
 import com.dps_admin.repository.TeacherRepository;
-import com.dps_admin.service.AdminDetailsImpl;
 import com.dps_admin.service.AuthService;
 import com.dps_admin.utils.BeanValidator;
 import com.dps_admin.utils.Utility;
@@ -76,6 +66,7 @@ public class AuthController {
 	public ModelAndView dashBoard(HttpServletRequest request, Authentication auth) {
 		System.err.println("::: AdminController.dashBoard :::");
 		ModelAndView modelAndView = new ModelAndView();
+		Admin adminDetails = adminRepo.findByEmail(auth.getName());
 		Long teacherCount=teacherRepo.count();
 		Long studentCount=studentRepo.count();
 		Long noitfyCount=notificationRepo.count();
@@ -84,6 +75,7 @@ public class AuthController {
 		modelAndView.addObject("sC",studentCount);
 		modelAndView.addObject("nC",noitfyCount);
 		modelAndView.addObject("rC",roleCount);
+		modelAndView.addObject("adminInfo",adminDetails);
 		modelAndView.addObject("userData",auth.getName());
 		modelAndView.setViewName("/index");
 		return modelAndView;
@@ -127,10 +119,12 @@ public class AuthController {
 			Long studentCount=studentRepo.count();
 			Long noitfyCount=notificationRepo.count();
 			Long roleCount=roleRepo.count();
+			Admin adminDetails = adminRepo.findByEmail(adminData.getEmail());
 			modelAndView.addObject("tC",teacherCount);
 			modelAndView.addObject("sC",studentCount);
 			modelAndView.addObject("nC",noitfyCount);
 			modelAndView.addObject("rC",roleCount);
+			modelAndView.addObject("adminInfo",adminDetails);
 			modelAndView.addObject("msg","Admin login Successfully");
 			modelAndView.setViewName("/index");
 			return modelAndView;

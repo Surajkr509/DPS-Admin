@@ -34,11 +34,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(adminDetailsServiceImpl).passwordEncoder(bCryptPasswordEncoder);
 	}
+	@Override
 	@Bean
 	public AuthenticationManager authenticationManagerBean() throws Exception {
-		return authenticationManager();
-	}
-	
+	    return super.authenticationManagerBean();
+	}	
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
@@ -49,7 +49,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		String loginPage = "/auth/login";
 		String logoutPage = "/logout";
 		http.authorizeRequests().antMatchers("/auth/**").permitAll().antMatchers(loginPage).permitAll().antMatchers("/admin/**")
-				.authenticated().and().csrf().disable().formLogin();
+				.authenticated().and().csrf().disable().formLogin().defaultSuccessUrl("/auth/index");
 	}
 
 	

@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
@@ -19,10 +20,10 @@ public class Admin implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private Long id;
 	@NotEmpty(message = "*Please provide your name")
 	private String name;
-	@Column(unique = true)
+	@Column(unique = false)
 	@NotEmpty(message = "*Please provide your email")
 	private String email;
 	@NotEmpty(message="*Please provide your mobileNo")
@@ -34,16 +35,28 @@ public class Admin implements Serializable {
 	private String updatedAt;
 	private String password;
 	private boolean loginStatus;
+	@Column(nullable=false,length =64)
+	private String photos;
+	
+	private String gender;
+	private String designation;
+	private String address;
+	private String city;
+	private String state;
+	private String country;
+	private String pincode;
+	
 
 	@OneToOne
 	@JoinColumn(name = "role_id")
 	private Role roleId;
 
-	public long getId() {
+	
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -126,6 +139,76 @@ public class Admin implements Serializable {
 	public void setLoginStatus(boolean loginStatus) {
 		this.loginStatus = loginStatus;
 	}
+
+	public String getPhotos() {
+		return photos;
+	}
+
+	public void setPhotos(String photos) {
+		this.photos = photos;
+	}
 	
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getDesignation() {
+		return designation;
+	}
+
+	public void setDesignation(String designation) {
+		this.designation = designation;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getPincode() {
+		return pincode;
+	}
+
+	public void setPincode(String pincode) {
+		this.pincode = pincode;
+	}
+
+	@Transient
+    public String getPhotosImagePath() {
+        if (photos == null || id == null) return null;
+         
+        return + id + "/" + photos;
+    }
 
 }

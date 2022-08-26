@@ -362,7 +362,7 @@
 													</div></li>
                                                 <li class="nav-item">
                                                     <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
-															<img th:src="@{/img/product/pro4.jpg}" alt="" />
+															<img th:src="@{'/images/'+${adminInfo.photosImagePath}}" alt="" />
 															<span class="admin-name" id="username"></span>
 															<i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
 														</a>
@@ -842,7 +842,7 @@
                                                 <li><a href="widgets.html">Widgets</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="events.html">Event</a></li>
+                                        <li><a th:href="@{./admin/events}">Event</a></li>
                                         <li><a data-toggle="collapse" data-target="#demoevent" href="#">Teachers <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
                                             <ul id="demoevent" class="collapse dropdown-header-top">
                                                 <li><a href="all-professors.html">All Teachers</a>
@@ -1222,7 +1222,7 @@
                                 <a href="#"><img th:src="@{/img/product/profile-bg.jpg}" alt=""></a>
                             </div>
                             <div class="single-product-text">
-                                <img th:src="@{/img/product/pro4.jpg}" alt="">
+                                <img th:src="@{'/images/'+${adminInfo.photosImagePath}}" alt="">
                                 <h4><a class="cards-hd-dn" href="#" th:text="${userData}"></a></h4>
                                 <h5>Web Designer & Developer</h5>
                                 <p class="ctn-cards">Lorem ipsum dolor sit amet, this is a consectetur adipisicing elit</p>
