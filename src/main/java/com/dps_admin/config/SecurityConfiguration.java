@@ -48,8 +48,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		String loginPage = "/auth/login";
 		String logoutPage = "/logout";
-		http.authorizeRequests().antMatchers("/auth/**").permitAll().antMatchers(loginPage).permitAll().antMatchers("/admin/**")
-				.authenticated().and().csrf().disable().formLogin().defaultSuccessUrl("/auth/index");
+		http.authorizeRequests().antMatchers("/").permitAll().antMatchers(loginPage).permitAll().antMatchers("/**")
+				.authenticated().and().csrf().disable().formLogin( form -> form.defaultSuccessUrl("/auth/index").loginPage("/auth/login").failureUrl("/auth/login?error=true")
+						).logout().logoutRequestMatcher(new AntPathRequestMatcher(logoutPage)).logoutSuccessUrl(loginPage).and()
+				.exceptionHandling();
 	}
 
 	

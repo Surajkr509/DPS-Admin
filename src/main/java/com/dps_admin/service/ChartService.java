@@ -30,10 +30,10 @@ public class ChartService {
 	
 	public Object getChartData() {
 		HashMap<String, Object> data = new HashMap<>();
-//		String t="Student_SIGNUP";
-//		List<Notifications> tData=notificationRepo.findAllByType(t);
-//		int tCount=tData.size();
-//		System.err.println(":::FDFS"+tCount);
+		String t="Student_SIGNUP";
+		List<Notifications> tData=notificationRepo.findAll();
+		int tCount=tData.size();
+		System.err.println(":::FDFS"+tCount);
 		data.put("totalStudents", studentRepo.count());
 		data.put("totalTeachers", teacherRepo.count());
 		data.put("totalAdmins", adminRepository.count());

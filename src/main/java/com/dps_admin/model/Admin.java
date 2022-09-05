@@ -23,7 +23,7 @@ public class Admin implements Serializable {
 	private Long id;
 	@NotEmpty(message = "*Please provide your name")
 	private String name;
-	@Column(unique = false)
+	@Column(unique = true)
 	@NotEmpty(message = "*Please provide your email")
 	private String email;
 	@NotEmpty(message="*Please provide your mobileNo")

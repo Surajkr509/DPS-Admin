@@ -1,0 +1,137 @@
+<div th:include="/layout/header"></div>
+<style>
+html, body {
+	background: #fff;
+}
+
+a {
+	color: black;
+}
+
+a:hover {
+	color: skyblue;
+}
+.dropdown-menu {
+    position: revert;
+    min-width: 84px;
+    }
+ .btn-sm {
+    padding: 5px 10px;
+    font-size: 14px;
+    line-height: 1.5;
+    border-radius: 3px;
+    border: 1px solid rgba(0,0,0,.12);
+    background: #f5f5f5;
+}
+</style>
+<div class="data-table-area mg-b-15">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="sparkline13-list">
+					<div class="sparkline13-hd">
+						<div class="main-sparkline13-hd">
+							<h1>
+								Subject<span class="table-project-n">List</span> Table
+							</h1>
+						</div>
+					</div>
+					<div class="sparkline13-graph">
+						<div class="datatable-dashv1-list custom-datatable-overright">
+							<div id="toolbar">
+								<select class="form-control dt-tb">
+									<option value="">Export Basic</option>
+									<option value="all">Export All</option>
+									<option value="selected">Export Selected</option>
+								</select>
+							</div>
+							<table id="table" data-toggle="table" data-pagination="true"
+								data-search="true" data-show-columns="true"
+								data-show-pagination-switch="true" data-show-refresh="true"
+								data-key-events="true" data-show-toggle="true"
+								data-resizable="true" data-cookie="true"
+								data-cookie-id-table="saveId" data-show-export="true"
+								data-click-to-select="true" data-toolbar="#toolbar">
+								<thead>
+									<tr>
+										<th data-field="state" data-checkbox="true"></th>
+										<th data-field="id">ID</th>
+										<th data-field="name" data-editable="true">Name</th>
+										<th data-field="email" data-editable="true">Created At</th>
+										<th data-field="phone" data-editable="true">Updated At</th>
+										<th data-field="rex">Status</th>
+										<th data-field="action">Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="subjects,indx:${subjectDetails}">
+										<td></td>
+										<td th:text="${indx.count}"></td>
+										<td th:text="${subjects.subjectName}"></td>
+										<td th:text="${subjects.createdAt}"></td>
+										<td th:text="${subjects.updatedAt}"></td>
+										<td th:id="'active'+${indx.count}"
+											th:text="${subjects.status} ? 'Active' : 'Deactive'"></td>
+										<td>
+											
+											<button data-toggle="tooltip" title="Edit"
+												class="pd-setting-ed">
+												<a class="fa fa-pencil-square-o" aria-hidden="true"
+													th:href="@{../admin/editSubject/{id}(id=${subjects.id})}"></a>
+											</button>
+											<button data-toggle="tooltip" title="Trash"
+												class="pd-setting-ed">
+												<a class="fa fa-trash-o" aria-hidden="true"
+													th:href="@{../admin/deleteSubject/{id}(id=${subjects.id})}"></a>
+											</button>
+											<div class="btn-group dropdown">
+												<button type="button"
+													class="btn btn-outline-primary dropdown-toggle btn-sm"
+													aria-haspopup="true" aria-expanded="false"
+													data-toggle="dropdown">
+													<i class="fa fa-cog"></i>
+												</button>
+												<div class="dropdown-menu">
+													<a class="dropdown-item" href="#" th:attrappend="data-id=${subjects.id}"
+														th:text="${subjects.status} ? 'Deactive' : 'Active'"
+														th:onclick="'changeStatus('+${indx.count}+','+${subjects.id}+',this)'"
+														style="margin-left: 14%;"></a>
+												</div>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+<div th:include="/layout/footer"></div>
+<script type="text/javascript">
+	function changeStatus(countr, vendId, elem) {
+		var dataId = $(elem).data("id");
+		var url = "/admin/updateSubjectStatus/" + dataId;
+		$.ajax({
+			url : url,
+			type : 'GET',
+			success : function(response) {
+				swal("", response, "success");
+			},
+			error : function(response) {
+				console.log(response);
+				swal("", "Cant update Status", "success");
+			}
+		});
+		$('#active' + countr).text($(elem).text());
+		if ($(elem).text() == 'Deactive')
+			$(elem).text('Active');
+		else
+			$(elem).text('Deactive');
+	}
+
+</script>

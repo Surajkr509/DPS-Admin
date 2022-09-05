@@ -6,6 +6,7 @@ package com.dps_admin.service;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -25,8 +26,12 @@ public class AdminDetailsServiceImpl implements UserDetailsService {
 	@Override
 	@Transactional
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-	Admin admin = adminRepository.findByUsername(email).orElseThrow(()-> new UsernameNotFoundException("User not found with username: " + email));
-		return AdminDetailsImpl.buildUserWithAuth(admin);
+	Admin admin = adminRepository.findByEmail(email);
+	if(admin == null) {
+		throw new UsernameNotFoundException(email);
+	}
+	UserDetails user = User.withUsername(admin.getEmail()).password(admin.getPassword()).authorities("ADMIN").build();
+	return user;
 	}
 
 }

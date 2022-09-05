@@ -4707,6 +4707,33 @@ div#sparklinehome canvas {
 .chart-ds-n-ex{
 	display:none;
 }
+ 
+ .dropdown-header {
+    background-color: #030b25;
+    border: 1px solid #030b25;
+    padding-top: 0.75rem;
+    margin-top: -5px;
+    font-size: 7px;
+    border-radius: 8px 8px 0px 0px;
+    color: #fff;
+}
+.notification-line {
+	    width: 90%;
+    margin-left: 17px;
+}
+.icon-circle {
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.bg-primary {
+    color: #fff;
+    background-color: #191a1a;
+}
+   
 /*----------------------------------------*/
 /*  23. footer
 /*----------------------------------------*/

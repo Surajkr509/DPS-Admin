@@ -66,7 +66,7 @@ public class TeacherController {
 			teacher.setCreatedAt(Constants.getDateAndTime());
 			teacher.setUpdatedAt(Constants.getDateAndTime());
 			teacherService.addTeacher(teacher,multipartFile);
-			Notifications notifications=new Notifications(0,teacher.getId(),NotificationsEnum.Teacher_SIGNUP,"A new teacher has SignUp :"+teacher.getName(),Constants.getDateAndTime(),Constants.getDateAndTime());
+			Notifications notifications=new Notifications(0,teacher.getId(),0,0,NotificationsEnum.Teacher_SIGNUP,"A new teacher has SignUp :"+teacher.getName(),Constants.getDateAndTime(),Constants.getDateAndTime());
 			notificationRepo.save(notifications);
 			return "redirect:/admin/teacherList";
 		} catch (Exception e) {

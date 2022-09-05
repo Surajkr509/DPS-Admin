@@ -1,0 +1,73 @@
+<div th:include="/layout/header"></div>
+<style>
+html, body {
+    background: #fff;
+}
+#loginHeading {
+	color: lightblue;
+	text-align: center;
+	background: #144028;
+}
+
+.textlevel  {
+    line-height: 1.5;
+    font-family: system-ui;
+}
+.box {
+        width: 30%;
+        height: 200px;
+        border: 5px dashed #f7a239;
+      }
+.row {
+margin-right: 0px;
+}      
+</style>
+
+		<div class="row">
+				<div class="col-sm-2"></div>
+				<div class="col-sm-10">
+					<div class="card card-primary">
+						<div class="card-header">
+							<h3 class="card-title">Add Subject</h3>
+							<br><br><br>
+						</div>
+						<form role="form" id="quickForm" th:object="${subjects}"
+							th:action="@{/admin/saveSubject}" method="POST">
+							<div class="card-body">
+								<div class="form-group row">
+									<div class="col-sm-2">
+										<span class="card-title">Name :</span>
+									</div>
+									<div class="col-sm-6">
+										<input type="text" name="subjectName" id="subjectName" required
+											class="form-control" style="margin-left: -105px;margin-top: -10;" placeholder="Enter Subject Name"> <span
+											class="validation-message" style="margin-left: -105px; color:red;" th:if="${#fields.hasErrors('subjectName')}" th:errors="*{subjectName}"></span>
+										<span class="validation-message" id="messages" style="color:red; margin-left: -105px;"></span>
+										<br><br>
+									</div>
+								</div>
+							</div>
+							<div class="card-footer">
+								<button type="button" id="change" onclick="confirm_update()"
+									class="btn btn-primary"> Add </button>
+								<button type="reset" class="btn btn-warning mr-2">Reset</button>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="col-md-6"></div>
+			</div>
+	</div>
+	</div>
+<div th:include="/layout/footer"></div>
+<script type="text/javascript">
+	function confirm_update() {
+		var data = $('#subjectName').val();
+		if (data == "") {
+			$('#messages').text("*Please Enter Subject");
+		} else {
+			$('#change').attr('disabled', 'disabled');
+			$('#quickForm').submit();
+		}
+	}
+</script>

@@ -1,0 +1,62 @@
+<div th:include="/layout/header"></div>
+<style>
+html, body {
+    background: #fff;
+}
+#loginHeading {
+	color: lightblue;
+	text-align: center;
+	background: #144028;
+}
+
+.textlevel  {
+    line-height: 1.5;
+    font-family: system-ui;
+}
+.box {
+        width: 30%;
+        height: 200px;
+        border: 5px dashed #f7a239;
+      }
+.row {
+margin-right: 0px;
+}      
+</style>
+
+		<div class="row">
+			<div class="col-sm-3"></div>
+			<div class="col-sm-6">
+				<h1 class="mystyle" id="loginHeading">Edit Student</h1>
+				<form action="../updateSubject" method="post">
+					<div class="form-group" style="display: none">
+						<label for="name">SUBJECT ID:</label> <input type="text"
+							th:field="*{subjectinfo.id}" name="id" class="form-control"
+							id="studentId" required placeholder="Enter subject id">
+					</div>
+					<div>
+						<div class="form-group">
+
+
+
+							<div class="col-sm-9">
+								<div class="form-group">
+									<label for="name">Subject Name :</label> <input type="text"
+										th:field="*{subjectinfo.subjectName}" name="subjectName"
+										class="form-control" id="name" required
+										placeholder="Enter subject name">
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<button type="submit" class="btn btn-primary btn-block">Submit</button>
+				</form>
+
+			</div>
+
+			<div class="col-sm-3"></div>
+		</div>
+	</div>
+	</div>
+<div th:include="/layout/footer"></div>
+

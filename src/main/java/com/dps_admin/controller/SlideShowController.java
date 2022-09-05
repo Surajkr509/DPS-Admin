@@ -55,7 +55,7 @@ public class SlideShowController {
 			slideShow.setCreatedAt(Constants.getDateAndTime());
 			slideShow.setUpdatedAt(Constants.getDateAndTime());
 			slideShowService.add(slideShow, multipartFile);
-			Notifications notifications = new Notifications(slideShow.getId(), 0, NotificationsEnum.SlideShow_Image,
+			Notifications notifications = new Notifications(0,0,slideShow.getId(),0, NotificationsEnum.SlideShow_Image,
 					"A new SlideShow Image has added ", Constants.getDateAndTime(), Constants.getDateAndTime());
 			notificationRepository.save(notifications);
 			return "redirect:/admin/imageList";

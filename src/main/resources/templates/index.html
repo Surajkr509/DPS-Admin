@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- favicon
 		============================================ -->
-    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/favicon.ico}">
     <!-- Google Fonts
 		============================================ -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
@@ -130,9 +130,9 @@
                         <li>
                             <a class="has-arrow" href="all-courses.html" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Courses</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="All Courses" href="all-courses.html"><span class="mini-sub-pro">All Courses</span></a></li>
-                                <li><a title="Add Courses" href="add-course.html"><span class="mini-sub-pro">Add Course</span></a></li>
-                                <li><a title="Edit Courses" href="edit-course.html"><span class="mini-sub-pro">Edit Course</span></a></li>
+                                <li><a title="All Courses" th:href="@{/admin/subjectList}"><span class="mini-sub-pro">All Courses</span></a></li>
+                                <li><a title="Add Courses" th:href="@{/admin/addSubject}"><span class="mini-sub-pro">Add Course</span></a></li>
+                                <li><a title="Edit Courses" th:href="@{/admin/routine}"><span class="mini-sub-pro">Edit Course</span></a></li>
                                 <li><a title="Courses Profile" href="course-info.html"><span class="mini-sub-pro">Courses Info</span></a></li>
                                 <li><a title="Product Payment" href="course-payment.html"><span class="mini-sub-pro">Courses Payment</span></a></li>
                             </ul>
@@ -349,9 +349,9 @@
 														class="educate-icon educate-bell" aria-hidden="true"></i><span
 														id="totalNotif" class="badge"></span></a>
 													<div role="menu"
-														class="notification-author dropdown-menu animated zoomIn">
-														<div class="notification-single-top">
-															<h1>Notifications</h1>
+														class="notification-author dropdown-menu animated zoomIn" style="border-radius:8px;">
+														<div class="dropdown-header">
+															<h1>NOTIFICATIONS</h1>
 														</div>
 														<div id="message"></div>
 														<div class="notification-view">
@@ -375,7 +375,7 @@
                                                         </li>
                                                         <li><a href="#"><span class="edu-icon edu-settings author-log-ic"></span>Settings</a>
                                                         </li>
-                                                        <li><a th:href="@{./logout}"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a>
+                                                        <li><a th:href="@{/logout}"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a>
                                                         </li>
                                                     </ul>
                                                 </li>

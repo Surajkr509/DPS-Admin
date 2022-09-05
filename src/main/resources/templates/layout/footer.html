@@ -127,11 +127,12 @@
 			success : function(response) {
 				notification='';
 				for (var i = 0; i < response.length; i++) {
-					notification += '<div class="row">';
+					notification += '<div class="row" style="margin: auto;>';
 					notification += '<a class="dropdown-item d-flex align-items-center">';
+					notification += '<hr class="notification-line">';
 					notification += '<a href="/getUnReadNotificationById/'+response[i]['id'] +'">';
 					notification += '<div class="col-sm-2">';
-					notification += '<div class="icon-circle bg-primary" style="margin-top:10;"><i class="fas fa-file-alt text-white"></i></div></div>';
+					notification += '<div class="icon-circle bg-primary"><i class="educate-icon educate-library icon-wrap"></i></div></div>';
 					notification += '<div class="col-sm-10 small text-black-500"><span>'+response[i]['createdAt'] +' </span><br><span style="color: #d94700;font-weight: 900;">'+response[i]['message'] +'</span></div></div></a></a><div>';
 				} 
 				$("#message").html(notification);

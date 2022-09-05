@@ -12,11 +12,12 @@ public interface NotificationRepository extends JpaRepository<Notifications,Long
 
 	Long countAllByReadStatus(int i);
 
-	Object findByType(String string);
+	List<Notifications> findByType(String string);
 
 	Object countAllByType(String type);
 
 	List<Notifications> findAllByType(String type);
+
 
 
 }

@@ -23,6 +23,8 @@ public class Notifications implements Serializable {
 	private Long id;
 	private long studentId;
 	private long teacherId;
+	private long slideshowId;
+	private long subjectId;
 	@Enumerated(EnumType.STRING)
 	private NotificationsEnum type;
 	
@@ -38,10 +40,12 @@ public class Notifications implements Serializable {
 	public Notifications() {
 	}
 
-	public Notifications(long studentId, long teacherId, NotificationsEnum type, String message, String createdAt, String updatedAt) {
+	public Notifications(long studentId, long teacherId,long slideshowId,long subjectId,NotificationsEnum type, String message, String createdAt, String updatedAt) {
 		super();
 		this.studentId = studentId;
 		this.teacherId = teacherId;
+		this.slideshowId = slideshowId;
+		this.subjectId = subjectId;
 		this.type = type;
 		this.message = message;
 		this.createdAt = createdAt;
@@ -72,6 +76,23 @@ public class Notifications implements Serializable {
 
 	public void setTeacherId(long teacherId) {
 		this.teacherId = teacherId;
+	}
+	
+
+	public long getSlideshowId() {
+		return slideshowId;
+	}
+
+	public void setSlideshowId(long slideshowId) {
+		this.slideshowId = slideshowId;
+	}
+
+	public long getSubjectId() {
+		return subjectId;
+	}
+
+	public void setSubjectId(long subjectId) {
+		this.subjectId = subjectId;
 	}
 
 	public NotificationsEnum getType() {

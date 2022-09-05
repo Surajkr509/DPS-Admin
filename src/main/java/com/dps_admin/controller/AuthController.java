@@ -81,7 +81,8 @@ public class AuthController {
 		return modelAndView;
 	}
 	
-	@GetMapping("/login")
+	//@GetMapping("/login")
+	@GetMapping(value = { "/", "/login" })
 		public String signIn(Admin admin) {
 			return "signin";
 		}

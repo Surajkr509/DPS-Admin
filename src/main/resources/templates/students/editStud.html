@@ -27,7 +27,7 @@ margin-right: 0px;
 			<div class="col-sm-3"></div>
 			<div class="col-sm-6">
 				<h1 class="mystyle" id="loginHeading">Edit Student</h1>
-				<form action="../update" method="post" 
+				<form th:action="@{/admin/update}" method="post" id="quickForm"
 					enctype="multipart/form-data">
 					<div class="form-group" style="display: none">
 						<label for="name">STUDENT ID:</label> <input type="text"
@@ -44,25 +44,29 @@ margin-right: 0px;
 									<label for="name">Name :</label> <input type="text"
 										th:field="*{studentinfo.name}" name="name"
 										class="form-control" id="name" required
-										placeholder="Enter name">
+										placeholder="Enter name"><span
+										class="validation-message" id="nameSpan"></span>
 								</div>
 								<div class="form-group">
 									<label for="name">Standard :</label> <input type="text"
 										th:field="*{studentinfo.standard}" name="standard"
 										class="form-control" id="standard" required
-										placeholder="Enter standard">
+										placeholder="Enter standard"><span
+										class="validation-message" id="roleSpan"></span>
 								</div>
 								<div class="form-group">
 									<label for="name">Mobile No. :</label> <input type="text"
 										th:field="*{studentinfo.mobileNo}" name="mobileNo"
 										class="form-control" id="mobileNo" required
-										placeholder="Enter mobile no.">
+										placeholder="Enter mobile no."><span
+										class="validation-message" id="passSpan"></span>
 								</div>
 								<div class="form-group">
 									<label for="name">Email :</label> <input type="text"
 										th:field="*{studentinfo.email}" name="email"
 										class="form-control" id="email" required
-										placeholder="Enter email address">
+										placeholder="Enter email address"><span
+										class="validation-message" id="emailSpan"></span>
 								</div>
 
 
@@ -75,7 +79,7 @@ margin-right: 0px;
 							</div>
 						</div>
 					</div>
-					<button type="submit" class="btn btn-primary btn-block">Submit</button>
+					<button type="submit" class="btn btn-primary btn-block" onclick="confirm_update()" id="change">Submit</button>
 				</form>
 
 			</div>
@@ -96,5 +100,27 @@ function readURL(input) {
 
     reader.readAsDataURL(input.files[0]);
   }
+}
+function confirm_update(){
+var name = document.getElementsByName('name')[0].value;
+var standard = document.getElementsByName('standard')[0].value;
+var mobileNo = document.getElementsByName('mobileNo')[0].value;
+var email = document.getElementsByName('email')[0].value;
+if (standard != "" && name != "" && mobileNo!="" && email != "") {
+			$('#change').attr('disabled', 'disabled');
+			$('#quickForm').submit();
+		} else {
+			
+			if (name == "")
+				$('#nameSpan').text("*Please provide your name");
+			if (standard == "")
+				$('#roleSpan').text("*Please provide class number.");
+			if (mobileNo == "")
+				$('#passSpan').text("*Please provide mobile number");
+			if (email == "")
+				$('#emailSpan').text("*Please provide a email");
+			
+		}
+
 }
 </script>
