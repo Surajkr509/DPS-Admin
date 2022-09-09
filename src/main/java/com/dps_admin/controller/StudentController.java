@@ -72,7 +72,7 @@ public class StudentController {
 			student.setPassword(Constants.getRandomPassword());
 			studentService.adds(student, multipartFile);
 			Notifications notifications = new Notifications(student.getId(),0,0,0,NotificationsEnum.Student_SIGNUP,
-					"A new student has SignUp", Constants.getDateAndTime(), Constants.getDateAndTime());
+					"A new student has SignUp :"+student.getName(), Constants.getDateAndTime(), Constants.getDateAndTime());
 			notificationRepository.save(notifications);
 			rA.addAttribute("pageNumber", null);
 			rA.addAttribute("pageSize", null);

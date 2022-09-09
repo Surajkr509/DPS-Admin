@@ -31,6 +31,7 @@ import com.dps_admin.repository.NotificationRepository;
 import com.dps_admin.repository.RoleRepository;
 import com.dps_admin.repository.StudentRepository;
 import com.dps_admin.repository.TeacherRepository;
+import com.dps_admin.service.AdminService;
 import com.dps_admin.service.AuthService;
 import com.dps_admin.utils.BeanValidator;
 import com.dps_admin.utils.Utility;
@@ -136,6 +137,7 @@ public class AuthController {
 		modelAndView.setViewName("/signin");
 		return modelAndView;
 	}
+	
 	@GetMapping("/forgotPassword")
 	public String forgotPassword(Admin admin) {
 		return "forgotPassword";
@@ -168,6 +170,7 @@ public class AuthController {
 			return model;
 		}
 	}
+	
 	@GetMapping("/changePassword")
 	public String changePassword(Admin admin) {
 		return "changePassword";

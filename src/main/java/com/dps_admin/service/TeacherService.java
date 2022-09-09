@@ -13,7 +13,9 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.dps_admin.bean.FileUploadUtil;
+import com.dps_admin.model.Role;
 import com.dps_admin.model.Teacher;
+import com.dps_admin.repository.RoleRepository;
 import com.dps_admin.repository.TeacherRepository;
 import com.dps_admin.utils.Constants;
 
@@ -22,6 +24,8 @@ public class TeacherService {
 
 	@Autowired
 	TeacherRepository teacherRepo;
+	@Autowired
+	RoleRepository roleRepository;
 	
 	public Object getList() {
 		return teacherRepo.findAll();
@@ -38,6 +42,10 @@ public class TeacherService {
 	}
 
 	public Object addTeacher(@Valid Teacher teacher, MultipartFile multipartFile) throws IOException {
+		Role role = roleRepository.findByRoleName("TEACHER");
+		System.out.println("::::Role::::"+role.getRoleName());
+		teacher.setRoleId(role);
+		teacher.setActive(true);
 		Teacher teacherData=teacherRepo.save(teacher);
 		String uploadDir = "src/main/resources/static/images/" + teacherData.getId();
 		FileUploadUtil.saveFile(uploadDir, teacher.getPhotos(), multipartFile);
@@ -52,7 +60,9 @@ public class TeacherService {
 	public Object update(Teacher teacher, MultipartFile multipartFile) throws IOException {
 		Optional<Teacher> teacherData = teacherRepo.findById(teacher.getId());
 		if(teacherData.isPresent()) {
+			Role role = roleRepository.findByRoleName("TEACHER"); 
 			Teacher reqTeacher=teacherData.get();
+			reqTeacher.setRoleId(role);
 			reqTeacher.setName(teacher.getName());
 			reqTeacher.setClassTeacher(teacher.getClassTeacher());
 			reqTeacher.setMobileNo(teacher.getMobileNo());

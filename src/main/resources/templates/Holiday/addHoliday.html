@@ -1,0 +1,109 @@
+<div th:include="/layout/header"></div>
+<style>
+html, body {
+	background: #fff;
+}
+
+#loginHeading {
+	color: lightblue;
+	text-align: center;
+	background: #144028;
+}
+
+.textlevel {
+	line-height: 1.5;
+	font-family: system-ui;
+}
+
+.box {
+	width: 30%;
+	height: 200px;
+	border: 5px dashed #f7a239;
+}
+
+.row {
+	margin-right: 0px;
+}
+</style>
+
+<div class="row">
+	<div class="col-sm-2"></div>
+	<div class="col-sm-10">
+		<div class="card card-primary">
+			<div class="card-header">
+				<h3 class="card-title">Add Holiday</h3>
+				<br>
+			</div>
+			<form role="form" id="quickForm" th:object="${holiday}"
+				th:action="@{/admin/saveHoliday}" method="POST">
+				<div class="card-body">
+					<div class="form-group row">
+						<div class="col-sm-2">
+							<span class="card-title">Festival Name :</span>
+						</div>
+						<div class="col-sm-6">
+							<input type="text" name="festivals" id="festivals" required
+								class="form-control"
+								style="margin-left: -51px; margin-top: -8px;"
+								placeholder="Enter Festival Name"> <span
+								class="validation-message"
+								style="margin-left: -51px; color: red;"
+								th:if="${#fields.hasErrors('festivals')}"
+								th:errors="*{festivals}"></span> <span
+								class="validation-message" id="messages"
+								style="color: red; margin-left: -51px;"></span> <br> <br>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-sm-2">
+							<span class="card-title">Day :</span>
+						</div>
+						<div class="col-sm-6">
+							<select class="form-control" id="ip2" name="days"
+								style="margin-left: -51px; margin-top: -10px;" required>
+								<option value="">Select Day</option>
+								<option th:each="type : ${days}" th:value="${type}"
+									th:text="${type}"></option>
+							</select>  <br> <br>
+						</div>
+					</div>
+					<div class="form-group row data-custon-pick" id="data_2">
+						<div class="col-sm-2">
+							<span class="card-title">Date :</span>
+						</div>
+						<div class="col-sm-6">
+							<div class="input-group date"
+								style="margin-left: -51px; margin-top: -10px;">
+								<span class="input-group-addon"><i
+									class="fa fa-calendar"></i></span> <input type="text" name="date"
+									class="form-control" style="width: 88%;" value="08/09/2017">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="card-footer">
+					<button type="button" id="change" onclick="confirm_update()"
+						class="btn btn-primary">Add</button>
+					<button type="reset" class="btn btn-warning mr-2">Reset</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="col-md-6"></div>
+</div>
+</div>
+</div>
+<div th:include="/layout/footer"></div>
+<script src="/js/datapicker/bootstrap-datepicker.js"></script>
+<script src="/js/datapicker/datepicker-active.js"></script>
+<script type="text/javascript">
+	function confirm_update() {
+		var data = $('#festivals').val();
+		if (data == "") {
+			$('#messages').text("*Please Enter Festival Name");
+		} else {
+			$('#change').attr('disabled', 'disabled');
+			$('#quickForm').submit();
+		}
+	}
+</script>

@@ -49,7 +49,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		String loginPage = "/auth/login";
 		String logoutPage = "/logout";
 		http.authorizeRequests().antMatchers("/").permitAll().antMatchers(loginPage).permitAll().antMatchers("/**")
-				.authenticated().and().csrf().disable().formLogin( form -> form.defaultSuccessUrl("/auth/index").loginPage("/auth/login").failureUrl("/auth/login?error=true")
+				.authenticated().and().csrf().disable().formLogin( form -> form.defaultSuccessUrl("/auth/index",true).loginPage("/auth/login").failureUrl("/auth/login?error=true")
 						).logout().logoutRequestMatcher(new AntPathRequestMatcher(logoutPage)).logoutSuccessUrl(loginPage).and()
 				.exceptionHandling();
 	}

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Session Expire</title>
+<script src="//use.fontawesome.com/84c9ca0cf8.js"></script>
+
+<style type="text/css">
+@import url('//fonts.googleapis.com/css?family=Roboto');
+
+body {
+	background: #F7FAFC;
+	color: #65A5E1;
+	font: 16px/1.3 "Roboto", sans-serif;
+}
+
+header {
+	width: 100%;
+	margin: 0px auto;
+}
+
+h1 {
+	text-align: center;
+	color: #EC7433;
+	font: 100px/1 "Roboto";
+	text-transform: uppercase;
+	margin: 5% auto 5%;
+	margin-bottom: 35px;
+}
+
+article {
+	display: block;
+	text-align: center;
+	width: 650px;
+	margin: 10px auto;
+}
+
+@media screen and (max-width: 720px) {
+	article {
+		display: block;
+		text-align: center;
+		width: 450px;
+		margin: 0 auto;
+	}
+	h1 {
+		font: 70px/1 "Roboto";
+	}
+	.wrap {
+		margin-top: 50px;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	article {
+		display: block;
+		text-align: center;
+		width: 300px !important;
+		margin: 0 auto;
+	}
+	h1 {
+		font: 50px/1 "Roboto";
+	}
+	.wrap {
+		margin-top: 50px;
+	}
+}
+</style>
+
+</head>
+<body oncontextmenu="return false;">
+
+	<div class="wrap" style="margin-top: 250px;">
+		<article>
+			<header>
+				<h1 id="fittext1">
+					401 <i class="fa fa-exclamation-triangle fa-fw"></i>
+				</h1>
+			</header>
+			<p id="fittext2">Session Expired</p>
+			<h4>
+				<span> Your session has been expired. Please click below to
+					Login Again.</span>
+			</h4>
+			<br> <br> <a style="text-decoration: none"
+				th:href="@{/auth/login}" class="buttonr button4 hvr-float-shadow"> <label
+				style="font-size: medium;" class="badge badge-success"><i
+					class="mdi mdi-login"></i> Login Again </label>
+			</a>
+		</article>
+	</div>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script
+		src="//cdnjs.cloudflare.com/ajax/libs/FitText.js/1.2.0/jquery.fittext.js"></script>
+	<script type="text/javascript">
+		$("#fittext1").fitText(1.1);
+		$("#fittext2").fitText(1.5);
+	</script>
+</body>
+</html>

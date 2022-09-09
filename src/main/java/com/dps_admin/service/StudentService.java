@@ -13,9 +13,10 @@ import org.springframework.web.multipart.MultipartFile;
 import com.dps_admin.bean.FileUploadUtil;
 import com.dps_admin.model.Student;
 import com.dps_admin.repository.NotificationRepository;
+import com.dps_admin.repository.RoleRepository;
 import com.dps_admin.repository.StudentRepository;
 import com.dps_admin.utils.Constants;
-
+import com.dps_admin.model.Role;
 
 @Service
 public class StudentService {
@@ -24,6 +25,8 @@ public class StudentService {
 	StudentRepository studentRepository;
 	@Autowired
 	NotificationRepository notificationRepository;
+	@Autowired
+	RoleRepository roleRepository;
 	
 	
 	public Student getById(Long id) {
@@ -39,8 +42,10 @@ public class StudentService {
 	public Object update(Student student,MultipartFile multipartFile ) throws IOException {
 		System.err.println("Update:::");
 		Optional<Student> existStudent = studentRepository.findById(student.getId());
+		Role role = roleRepository.findByRoleName("STUDENT"); 
 		if (existStudent.isPresent()) {
 			Student data = existStudent.get();
+			data.setRoleId(role);
 			data.setName(student.getName());
 			data.setStandard(student.getStandard());
 			data.setEmail(student.getEmail());
@@ -75,6 +80,9 @@ public class StudentService {
 	public Object adds(@Valid Student student, MultipartFile multipartFile) throws IOException {
 //		Notifications notifications = new Notifications(student.getId(),0,NotificationsEnum.Student_SIGNUP,
 //				"A new player has SignUp", Constants.getDateAndTime(), Constants.getDateAndTime());
+		Role role = roleRepository.findByRoleName("STUDENT"); 
+		student.setRoleId(role);
+		student.setActive(true);
 		Student savedStudent = studentRepository.save(student);
 		String uploadDir = "src/main/resources/static/images/" + savedStudent.getId();
 		FileUploadUtil.saveFile(uploadDir, student.getPhotos(), multipartFile);
