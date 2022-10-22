@@ -1,7 +1,6 @@
 package com.dps_admin.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -32,38 +31,7 @@ public class AdminController {
 	@Autowired
 	AdminService adminService;
 	
-	@PostMapping("/addAdmin")
-	public ModelAndView addAdmin(Admin admin){
-		System.out.println("Auth.signUp:::::");
-		ModelAndView model = new ModelAndView();
-		try {
-			ArrayList<String> errorList=beanValidator.userValidate(admin);
-			if(errorList.size()!=0) {
-				model.addObject("msg1",errorList);
-				model.setViewName("/signup");
-				return model;
-			}
-			if(adminRepo.existsByEmail(admin.getEmail())) {
-				model.addObject("msg2","*Admin Already exist by email.");
-				model.setViewName("/signup");
-				return model;
-			}
-			if(adminRepo.existsByMobileNo(admin.getMobileNo())){
-				model.addObject("msg3","*Admin Already exist by mobile number. ");
-				model.setViewName("/signup");
-				return model;
-			}else {
-				authService.signUp(admin);
-				model.addObject("msg2","Admin Registered Successfully");
-				model.setViewName("/signin");
-				return model;
-			}
-		} catch(Exception e) {
-			model.setViewName("/signup");
-			return model;
-		}
-		
-	}
+	
 	@GetMapping("/events")
 	public String events() {
 		return "events.html";

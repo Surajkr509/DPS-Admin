@@ -1,8 +1,5 @@
 package com.dps_admin.service;
 
-
-
-
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import com.dps_admin.model.Admin;
 import com.dps_admin.repository.AdminRepository;
-
 
 @Service
 public class AdminDetailsServiceImpl implements UserDetailsService {
@@ -30,7 +26,7 @@ public class AdminDetailsServiceImpl implements UserDetailsService {
 	if(admin == null) {
 		throw new UsernameNotFoundException(email);
 	}
-	UserDetails user = User.withUsername(admin.getEmail()).password(admin.getPassword()).authorities("ADMIN").build();
+	UserDetails user = User.withUsername(admin.getEmail()).password(admin.getPassword()).authorities(admin.getRoleId().getRoleName()).build();
 	return user;
 	}
 

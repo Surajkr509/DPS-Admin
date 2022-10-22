@@ -10,9 +10,10 @@ html, body {
 }
 </style>
 
-<div class="container">
+<div class="container" id="body">
 	<div class="timetable-img text-center">
 		<img th:src="@{/img/favicon.ico}" alt="">
+		<img th:src="@{/images/dps-jaipur-school-logo.png}" alt="" style="background-color: #144028;width: 21%;">
 	</div>
 	<div class="col-sm 12">
 		<div class="col-sm 6" style="margin-left: 221px;">
@@ -710,8 +711,16 @@ html, body {
 
 			</tbody>
 		</table>
+		<button class="btn btn-primary" id="button" style="margin-left: 87%;"><i class="fa fa-download"></i> Download</button>
 	</div>
 </div>
 </div>
-</div>
+</div><br><br>
 <div th:include="/layout/footer"></div>
+<script>
+const btn = document.getElementById("button");
+btn.addEventListener("click", function(){
+var element = document.getElementById('body');
+html2pdf().from(element).save('Routine.pdf');
+});
+</script>

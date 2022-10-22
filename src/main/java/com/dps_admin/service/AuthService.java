@@ -1,13 +1,17 @@
 package com.dps_admin.service;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Optional;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.dps_admin.bean.FileUploadUtil;
 import com.dps_admin.model.Admin;
 import com.dps_admin.model.Role;
 import com.dps_admin.repository.AdminRepository;
@@ -21,18 +25,22 @@ public class AuthService {
 	RoleRepository roleRepository;
 	@Autowired
 	AdminRepository adminRepo;
+	@Autowired
+	BCryptPasswordEncoder bCryptPasswordEncoder;
 
-	public Object signUp(Admin admin) {
+	public Object signUp(Admin admin,MultipartFile multipartFile) throws IOException {
 		Role role = roleRepository.findByRoleName("ADMIN");
 		if (role != null) {
 			admin.setRoleId(role);
 			admin.setName(admin.getName());
 			admin.setEmail(admin.getEmail());
 			admin.setUsername(admin.getEmail());
-			admin.setPassword(admin.getPassword());
+			admin.setPassword(bCryptPasswordEncoder.encode(admin.getPassword()));
 			admin.setMobileNo(admin.getMobileNo());
 			admin.setCreatedAt(Constants.getDateAndTime());
-			adminRepo.save(admin);
+			Admin savesAdmin =adminRepo.save(admin);
+			String uploadDir = "src/main/resources/static/images/" + savesAdmin.getId();
+			FileUploadUtil.saveFile(uploadDir, admin.getPhotos(), multipartFile);
 			HashMap<String, Object> adminData = new HashMap<>();
 			adminData.put("username", admin.getEmail());
 			adminData.put("password", admin.getPassword());

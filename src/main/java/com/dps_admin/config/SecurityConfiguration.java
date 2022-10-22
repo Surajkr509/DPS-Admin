@@ -44,17 +44,30 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		return new BCryptPasswordEncoder();
 	}
 	
+//	@Override
+//	protected void configure(HttpSecurity http) throws Exception {
+//		String loginPage = "/auth/login";
+//		String logoutPage = "/logout";
+//		http.authorizeRequests().antMatchers("/auth/index")
+//				.authenticated().anyRequest().permitAll().and().csrf().disable().formLogin( form -> form.defaultSuccessUrl("/auth/index",true).loginPage("/auth/login").failureUrl("/auth/login?error=true")
+//						).logout().logoutRequestMatcher(new AntPathRequestMatcher(logoutPage)).logoutSuccessUrl(loginPage).and()
+//				.exceptionHandling();
+//	}
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		String register ="/auth/signUp/**";
+		String forgotPassword ="/auth/forgotPassword/**";
+		String changePassword ="/auth/changePassword/**";
 		String loginPage = "/auth/login";
 		String logoutPage = "/logout";
-		http.authorizeRequests().antMatchers("/").permitAll().antMatchers(loginPage).permitAll().antMatchers("/**")
+		http.authorizeRequests().antMatchers(register).permitAll().antMatchers(changePassword).permitAll().antMatchers(forgotPassword).permitAll().antMatchers("/").permitAll().antMatchers(loginPage).permitAll().antMatchers("/**").hasAuthority("ADMIN")
+        .anyRequest()
 				.authenticated().and().csrf().disable().formLogin( form -> form.defaultSuccessUrl("/auth/index",true).loginPage("/auth/login").failureUrl("/auth/login?error=true")
-						).logout().logoutRequestMatcher(new AntPathRequestMatcher(logoutPage)).logoutSuccessUrl(loginPage).and()
+						).logout().logoutRequestMatcher(new AntPathRequestMatcher(logoutPage)).logoutSuccessUrl("/auth/login?logout=true").and()
 				.exceptionHandling();
 	}
 
-	
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring().antMatchers("/resources/**", "/static/**", "/templates/**", "/fonts/**", "/css/**", "/img/**", "/pdf/**", "/js/**", "/images/**", "/layout/**");

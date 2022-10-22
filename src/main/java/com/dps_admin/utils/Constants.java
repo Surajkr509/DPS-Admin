@@ -17,10 +17,29 @@ public class Constants {
 	public static final String invalidData = "invalidData";
 	public static final String requestSuccess = "requestSuccess";
 	
-	
-	
-	
-	
+	public static final String EMAIL = "email";
+	public static final String COMPANY_ADDRESS = "companyAddress";
+	public static final String DIRECTION_LINK = "directionLink";
+	public static final String MOBILE_NO = "mobNo";
+	public static final String FACEBOOK_LINK = "facebookLink";
+	public static final String LINKEDIN_LINK = "linkedinLink";
+	public static final String TWITTER_LINK = "twitterLink";
+	public static final String INSTAGRAM_LINK = "instagramLink";
+	public static final String YOUTUBE_LINK = "youtubeLink";
+	public static final String MAINCONTENT = "mainContent";
+	public static final String ABOUT_US = "aboutUs";
+	public static final String FEATURES = "features";
+	public static final String TERM_CONDITION = "termCondition";
+	public static final String PRIVACY_POLICY = "privacyPolicy";
+	public static final String ADVANTAGES = "advantages";
+	public static final String FAQ = "FAQ";
+	public static final String CONTACT_US = "contactUs";
+	public static final String APP_CMS = "APP_CMS";
+	public static final String WEBSITE_CMS = "WEBSITE_CMS";
+	public static final String CREDIT = "CREDIT";
+	public static final String DEBIT = "DEBIT";
+	public static final String REWARD = "REWARD";
+	public static final String LOYALTY = "LOYALTY";
 	
 	
 	public static String getDateAndTime() {
